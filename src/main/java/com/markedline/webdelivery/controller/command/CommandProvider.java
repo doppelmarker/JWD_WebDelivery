@@ -1,6 +1,6 @@
 package com.markedline.webdelivery.controller.command;
 
-import com.markedline.webdelivery.controller.command.impl.GoToIndexPage;
+import com.markedline.webdelivery.controller.command.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,12 +10,13 @@ public class CommandProvider {
 
     public CommandProvider() {
 
-//        commands.put(CommandName.LOGINATION, new Logination());
-//        commands.put(CommandName.GOTOMAINPAGE, new GoToMainPage());
+        commands.put(CommandName.LOGIN, new Login());
+        commands.put(CommandName.GOTOERRORPAGE, new GoToErrorPage());
 //        commands.put(CommandName.LOGOUT, new Logout());
-//        commands.put(CommandName.REGISTRATION, new Registration());
+        commands.put(CommandName.REGISTRATION, new Registration());
         commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
-
+        commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
+        commands.put(CommandName.GOTOREGISTRATIONPAGE, new GoToRegistrationPage());
     }
 
     public Command takeCommand(String name) {
