@@ -13,10 +13,10 @@ public class CommandProvider {
         commands.put(CommandName.LOGIN, new Login());
         commands.put(CommandName.GOTOERRORPAGE, new GoToErrorPage());
 //        commands.put(CommandName.LOGOUT, new Logout());
-        commands.put(CommandName.REGISTRATION, new Registration());
+        commands.put(CommandName.REGISTRATION, new PrimaryRegistration());
         commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
         commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
-        commands.put(CommandName.GOTOREGISTRATIONPAGE, new GoToRegistrationPage());
+        commands.put(CommandName.GOTOPRIMARYREGISTRATIONPAGE, new GoToPrimaryRegistrationPage());
     }
 
     public Command takeCommand(String name) {
