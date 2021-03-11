@@ -85,9 +85,9 @@
         <p>Please fill in this form to create an account.</p>
         <hr>
 
-        <label for="login"><b>Login</b></label>
-        <input type="text" placeholder="Enter Login" id="login" name="username"
-               value="${pageContext.request.getParameter('username')}" required>
+        <label for="lgn"><b>Login</b></label>
+        <input type="text" placeholder="Enter Login" id="lgn" name="login"
+               value="${pageContext.request.getParameter('login')}" required>
 
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" id="psw" name="password"
