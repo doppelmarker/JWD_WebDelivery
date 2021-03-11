@@ -7,6 +7,7 @@ import com.markedline.webdelivery.service.ServiceProvider;
 import com.markedline.webdelivery.service.UserService;
 import com.markedline.webdelivery.service.validator.ValidatorException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,10 @@ public class Registration implements Command {
 
         try {
             if (userService.isLoginTaken(login)) {
-                response.sendRedirect("Controller?command=gotoregistrationpage&errorMessage=This login is already taken!");
+                String errorMessage = "This login is already taken!";
+                request.setAttribute("errorMessage", errorMessage);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+                requestDispatcher.forward(request, response);
                 return;
             }
         } catch (ServiceException e) {
@@ -36,7 +40,10 @@ public class Registration implements Command {
         String repeatedPassword = request.getParameter("repeatedPassword");
 
         if (!password.equals(repeatedPassword)) {
-            response.sendRedirect("Controller?command=gotoregistrationpage&errorMessage=Passwords don't match!");
+            String errorMessage = "Passwords don't match!";
+            request.setAttribute("errorMessage", errorMessage);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+            requestDispatcher.forward(request, response);
             return;
         }
 
@@ -45,7 +52,9 @@ public class Registration implements Command {
             userService.primaryRegistration(user);
             response.sendRedirect("Controller?command=gotoindexpage");
         } catch (ValidatorException e) {
-            response.sendRedirect("Controller?command=gotoregistrationpage&errorMessage=" + e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
+            requestDispatcher.forward(request, response);
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=gotoerrorpage&errorMessage=" + e.getMessage());
         }
