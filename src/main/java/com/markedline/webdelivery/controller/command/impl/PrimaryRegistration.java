@@ -20,7 +20,7 @@ public class PrimaryRegistration implements Command {
         ServiceProvider provider = ServiceProvider.getInstance();
         UserService userService = provider.getUserService();
 
-        String login = request.getParameter("username");
+        String login = request.getParameter("login");
 
         try {
             if (userService.isLoginTaken(login)) {
