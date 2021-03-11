@@ -86,15 +86,17 @@
         <hr>
 
         <label for="login"><b>Login</b></label>
-        <input type="text" placeholder="Enter Login" id="login" name="username" required>
+        <input type="text" placeholder="Enter Login" id="login" name="username"
+               value="${pageContext.request.getParameter('username')}" required>
 
         <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="psw" name="password" required>
+        <input type="password" placeholder="Enter Password" id="psw" name="password"
+               value="${pageContext.request.getParameter('password')}" required>
 
         <label for="psw-repeated"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" id="psw-repeated" name="repeatedPassword" required>
         <hr>
-        <p style="color: red; padding: 0 16px">${param.errorMessage}</p>
+        <p style="color: red; padding: 0 16px">${requestScope.errorMessage}</p>
         <button type="submit" class="registerbtn">Register</button>
     </div>
     <div class="container" style="background-color:#f1f1f1">
