@@ -58,12 +58,17 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User authorization(String login, String password) throws DAOException {
+        List<User> users = getAll();
+        for (User user : users) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password))
+                return user;
+        }
         return null;
     }
 
     @Override
     public List<User> getAll() throws DAOException {
-        List<User> listUsers = new ArrayList<>();
+        List<User> users = new ArrayList<>();
 
         try (Connection connection = connectionPool.takeConnection();
              Statement statement = connection.createStatement()) {
@@ -92,7 +97,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setDetail(userDetail);
                 user.setStatus(resultSet.getString(15));
 
-                listUsers.add(user);
+                users.add(user);
             }
         } catch (SQLException e) {
             throw new DAOException("Database access error.", e);
@@ -100,7 +105,7 @@ public class UserDAOImpl implements UserDAO {
             throw new DAOException(e);
         }
 
-        return listUsers;
+        return users;
     }
 
     @Override

@@ -36,7 +36,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User authorization(String login, String password) throws ServiceException {
-        return null;
+        UserDAO userDAO = daoProvider.getUserDAO();
+
+        User user;
+        try {
+            user = userDAO.authorization(login, password);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+
+        return user;
     }
 
     @Override
