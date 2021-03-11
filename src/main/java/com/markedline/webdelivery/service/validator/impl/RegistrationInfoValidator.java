@@ -10,9 +10,11 @@ public class RegistrationInfoValidator implements CommonValidator {
     private static final int LOGIN_MAX_LENGTH = 20;
     private static final int PASSWORD_MIN_LENGTH = 8;
     private static final int PASSWORD_MAX_LENGTH = 128;
-    private static final String INCORRECT_LOGIN_LENGTH = "Некорректная длина логина";
-    private static final String INCORRECT_PASSWORD_LENGTH = "Некорректная длина пароля";
-    private static final String NO_UPPERCASE_LETTERS_IN_PASSWORD = "Пароль должен содержать как минимум одну прописную букву";
+    private static final String INCORRECT_LOGIN_LENGTH = "Login length must be from " + LOGIN_MIN_LENGTH +
+            " to " + LOGIN_MAX_LENGTH + " symbols!";
+    private static final String INCORRECT_PASSWORD_LENGTH = "Password length must be from " + PASSWORD_MIN_LENGTH +
+            " to " + PASSWORD_MAX_LENGTH + " symbols!";
+    private static final String NO_UPPERCASE_LETTERS_IN_PASSWORD = "Password must contain at least one uppercase letter!";
 
     @Override
     public boolean validate(ValidationInfo info) throws ValidatorException {
