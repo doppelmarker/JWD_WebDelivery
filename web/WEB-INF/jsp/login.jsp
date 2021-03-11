@@ -91,10 +91,10 @@
     <div class="imgcontainer">
         <img src="${pageContext.servletContext.contextPath}/assets/airplane.jpg" alt="Avatar" class="avatar">
     </div>
-    <p style="color: red; padding: 0 16px">${param.errorMessage}</p>
+    <p style="color: red; padding: 0 16px">${requestScope.errorMessage}</p>
     <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" id="uname" name="username" required>
+        <label for="lgn"><b>Login</b></label>
+        <input type="text" placeholder="Enter Login" id="lgn" name="login" required>
 
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" id="psw" name="password" required>
