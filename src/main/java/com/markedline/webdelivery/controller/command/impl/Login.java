@@ -6,6 +6,7 @@ import com.markedline.webdelivery.service.ServiceException;
 import com.markedline.webdelivery.service.ServiceProvider;
 import com.markedline.webdelivery.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,10 @@ public class Login implements Command {
             user = userService.authorization(login, password);
 
             if (user == null) {
-                response.sendRedirect("Controller?command=gotologinpage&errorMessage=Invalid Username or Password");
+                String errorMessage = "Invalid username or password!";
+                request.setAttribute("errorMessage", errorMessage);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+                requestDispatcher.forward(request, response);
                 return;
             }
 
@@ -35,14 +39,8 @@ public class Login implements Command {
             session.setAttribute("auth", true);
             session.setAttribute("loginedUser", user);
             response.sendRedirect("Controller?command=gotoindexpage");
-
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=gotoindexpage&errorMessage=" + e.getMessage());
         }
-    }
-
-
-    private void get() {
-
     }
 }
