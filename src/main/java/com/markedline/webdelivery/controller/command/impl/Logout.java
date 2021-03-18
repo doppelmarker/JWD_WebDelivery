@@ -16,6 +16,6 @@ public class Logout implements Command {
 
         request.getSession().invalidate();
 
-        response.sendRedirect("Controller?command=gotoindexpage&message=logout ok");
+        response.sendRedirect("Controller?command=gotoindexpage&message=Logout successful!");
     }
 }
