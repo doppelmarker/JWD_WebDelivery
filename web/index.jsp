@@ -40,6 +40,9 @@
         </div>
     </div>
 </header>
+
+<p style="font-size: 1.25rem; margin-top: 2rem; padding-left: 3rem"><b>${param.message}</b></p>
+
 <c:if test="${sessionScope.auth == true}">
     <p style="font-size: 1.25rem; margin-top: 2rem; padding-left: 3rem">Hello <b>${sessionScope.loginedUser.login}</b></p>
 </c:if>
