@@ -89,7 +89,7 @@
 <form action="Controller" method="post">
     <input type="hidden" name="command" value="login"/>
     <div class="imgcontainer">
-        <img src="${pageContext.servletContext.contextPath}/assets/airplane.jpg" alt="Avatar" class="avatar">
+        <img src="${pageContext.servletContext.contextPath}/assets/food.jpg" alt="Avatar" class="avatar">
     </div>
     <p style="color: red; padding: 0 16px">${requestScope.errorMessage}</p>
     <div class="container">
