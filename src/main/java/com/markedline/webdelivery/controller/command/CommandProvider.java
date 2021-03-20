@@ -17,6 +17,7 @@ public class CommandProvider {
         commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
         commands.put(CommandName.GOTOLOGINPAGE, new GoToLoginPage());
         commands.put(CommandName.GOTOPRIMARYREGISTRATIONPAGE, new GoToPrimaryRegistrationPage());
+        commands.put(CommandName.GOTOPROFILEINFOPAGE, new GoToProfileInfoPage());
     }
 
     public Command takeCommand(String name) {
