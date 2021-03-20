@@ -25,9 +25,7 @@ public class PrimaryRegistration implements Command {
         try {
             if (userService.isLoginTaken(login)) {
                 String errorMessage = "This login is already taken!";
-                request.setAttribute("errorMessage", errorMessage);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
-                requestDispatcher.forward(request, response);
+                response.sendRedirect("Controller?command=gotoprimaryregistrationpage&errorMessage=" + errorMessage);
                 return;
             }
         } catch (ServiceException e) {
@@ -41,20 +39,17 @@ public class PrimaryRegistration implements Command {
 
         if (!password.equals(repeatedPassword)) {
             String errorMessage = "Passwords don't match!";
-            request.setAttribute("errorMessage", errorMessage);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("Controller?command=gotoprimaryregistrationpage&errorMessage=" + errorMessage);
             return;
         }
 
         User user = new User(login, password);
         try {
             userService.primaryRegistration(user);
-            response.sendRedirect("Controller?command=gotoindexpage");
+            String message = "Registration successful!";
+            response.sendRedirect("Controller?command=gotoindexpage&message=" + message);
         } catch (ValidatorException e) {
-            request.setAttribute("errorMessage", e.getMessage());
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registration.jsp");
-            requestDispatcher.forward(request, response);
+            response.sendRedirect("Controller?command=gotoprimaryregistrationpage&errorMessage=" + e.getMessage());
         } catch (ServiceException e) {
             response.sendRedirect("Controller?command=gotoerrorpage&errorMessage=" + e.getMessage());
         }

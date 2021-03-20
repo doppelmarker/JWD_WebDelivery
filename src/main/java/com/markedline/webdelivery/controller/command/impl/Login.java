@@ -29,9 +29,7 @@ public class Login implements Command {
 
             if (user == null) {
                 String errorMessage = "Invalid username or password!";
-                request.setAttribute("errorMessage", errorMessage);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-                requestDispatcher.forward(request, response);
+                response.sendRedirect("Controller?command=gotologinpage&errorMessage=" + errorMessage);
                 return;
             }
 
@@ -40,7 +38,7 @@ public class Login implements Command {
             session.setAttribute("loginedUser", user);
             response.sendRedirect("Controller?command=gotoindexpage");
         } catch (ServiceException e) {
-            response.sendRedirect("Controller?command=gotoindexpage&errorMessage=" + e.getMessage());
+            response.sendRedirect("Controller?command=gotoerrorpage&errorMessage=" + e.getMessage());
         }
     }
 }
