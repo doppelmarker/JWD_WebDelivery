@@ -13,6 +13,7 @@ public class User implements Serializable {
     private String role;
     private UserDetail detail;
     private String status;
+    private boolean isSecondaryRegCompleted;
 
     public User() {
     }
@@ -22,13 +23,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(Integer id, String login, String password, String role, UserDetail detail, String status) {
+    public User(Integer id, String login, String password, String role, UserDetail detail, String status, boolean isSecondaryRegCompleted) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;
         this.detail = detail;
         this.status = status;
+        this.isSecondaryRegCompleted = isSecondaryRegCompleted;
     }
 
     public String getLogin() {
@@ -79,16 +81,23 @@ public class User implements Serializable {
         this.detail = detail;
     }
 
+    public boolean isSecondaryRegCompleted() {
+        return isSecondaryRegCompleted;
+    }
+
+    public void setSecondaryRegCompleted(boolean secondaryRegCompleted) {
+        isSecondaryRegCompleted = secondaryRegCompleted;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", detail=" + detail +
                 ", role='" + role + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+                ", detail=" + detail +
+                ", status='" + status + "'}";
     }
 
     @Override
@@ -96,16 +105,17 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
+        return isSecondaryRegCompleted == user.isSecondaryRegCompleted &&
+                Objects.equals(id, user.id) &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(detail, user.detail) &&
                 Objects.equals(role, user.role) &&
+                Objects.equals(detail, user.detail) &&
                 Objects.equals(status, user.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, detail, role, status);
+        return Objects.hash(id, login, password, role, detail, status, isSecondaryRegCompleted);
     }
 }
