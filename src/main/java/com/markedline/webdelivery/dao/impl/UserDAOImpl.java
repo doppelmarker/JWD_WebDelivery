@@ -15,10 +15,6 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
-    static {
-        MySQLDriverLoader.getInstance();
-    }
-
     private static final String REGISTER_USER = "INSERT INTO users (login, password) VALUES (?, ?)";
     private static final String GET_ALL_USERS = "SELECT users.id, login, password, user_roles.name, user_details.name, surname, age, phone, email, city, street, house, path, payment_methods.name, user_statuses.name\n" +
             "FROM users\n" +
@@ -29,15 +25,7 @@ public class UserDAOImpl implements UserDAO {
             "LEFT JOIN user_pics on user_details.pic_id = user_pics.id\n" +
             "LEFT JOIN addresses on user_details.address_id = addresses.id;";
 
-    private final ConnectionPool connectionPool;
-
-    public UserDAOImpl() throws DAOException {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (ConnectionPoolException e) {
-            throw new DAOException(e);
-        }
-    }
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     public boolean primaryRegistration(User user) throws DAOException {
@@ -96,6 +84,7 @@ public class UserDAOImpl implements UserDAO {
                 userDetail.setPaymentMethod(resultSet.getString(14));
                 user.setDetail(userDetail);
                 user.setStatus(resultSet.getString(15));
+                user.setSecondaryRegCompleted(resultSet.getBoolean(16));
 
                 users.add(user);
             }
