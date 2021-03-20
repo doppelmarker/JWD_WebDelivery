@@ -16,7 +16,7 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
 
     private static final String REGISTER_USER = "INSERT INTO users (login, password) VALUES (?, ?)";
-    private static final String GET_ALL_USERS = "SELECT users.id, login, password, user_roles.name, user_details.name, surname, age, phone, email, city, street, house, path, payment_methods.name, user_statuses.name\n" +
+    private static final String GET_ALL_USERS = "SELECT users.id, login, password, user_roles.name, user_details.name, surname, age, phone, email, city, street, house, path, payment_methods.name, user_statuses.name, is_sec_reg_completed\n" +
             "FROM users\n" +
             "LEFT JOIN user_roles on users.role_id = user_roles.id\n" +
             "LEFT JOIN user_statuses on users.status_id = user_statuses.id\n" +
