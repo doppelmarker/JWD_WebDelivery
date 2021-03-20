@@ -5,16 +5,7 @@ import com.markedline.webdelivery.dao.impl.UserDAOImpl;
 public class DAOProvider {
     private static final DAOProvider instance = new DAOProvider();
 
-    private UserDAO userDAO;
-
-    private DAOProvider() {
-        try {
-            userDAO = new UserDAOImpl();
-        } catch (DAOException e) {
-            userDAO = null;
-            //logger
-        }
-    }
+    private final UserDAO userDAO = new UserDAOImpl();
 
     public static DAOProvider getInstance() {
         return instance;
