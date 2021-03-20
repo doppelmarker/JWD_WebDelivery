@@ -19,6 +19,10 @@
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>com.markedline.webdelivery.listener.AppContextListener</listener-class>
+    </listener>
+
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>
