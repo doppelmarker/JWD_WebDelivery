@@ -18,7 +18,7 @@ public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            ConnectionPool.getInstance();
+            ConnectionPool.getInstance().init();
         } catch (ConnectionPoolException e) {
             servletContextEvent.getServletContext().getRequestDispatcher(GO_TO_ERROR_PAGE);
             logger.log(Level.FATAL, ERROR_INIT_CONNECTION_POOL);
